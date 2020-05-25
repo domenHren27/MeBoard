@@ -25,15 +25,12 @@ class ProjectsController extends Controller
     }
 
     public function store()
-    {
-        //validate
-        $attributes = request()->validate([
+    {        
+        //auth//validate//presist
+        auth()->user()->projects()->create(request()->validate([
             'title' => 'required',
-            'description' =>  'required'
-        ]);
-
-        //presist
-        Project::create($attributes);
+            'description' =>  'required',
+        ]));
 
         //redirect
         return redirect('/projects');
