@@ -9,7 +9,7 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
+        $projects = auth()->user()->projects;
 
     
 
@@ -19,9 +19,17 @@ class ProjectsController extends Controller
 
     public function show(Project $project) //Auto inject wild card
     {
-        //$project = Project::findOrFail(request('project')); //'project je wild card {project} "glej routes/web"
+
+        if (auth()->user()->isNot($project->owner)) {
+            abort(403);
+        } //Preverimo ali je auth user lastnik projekta
 
         return view('projects.show', compact('project'));
+    }
+
+    public function create()
+    {
+        return view('projects.create');
     }
 
     public function store()
@@ -35,4 +43,6 @@ class ProjectsController extends Controller
         //redirect
         return redirect('/projects');
     }
+
+    
 }

@@ -12,7 +12,5 @@ $factory->define(Project::class, function (Faker $faker) {
         'owner_id' => function () {
             return factory(App\User::class)->create()->id; // Ustvari userja in vrni id
         }
-
-        
     ];
 });

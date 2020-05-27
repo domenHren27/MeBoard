@@ -6,19 +6,23 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProjectsTest extends TestCase
+class ManageProjectsTest extends TestCase
 {
 
     use WithFaker, RefreshDatabase; //Pomemben je refresh, da ne shranjuje podatkov v DB
 
     /** @test */
-    public function only_authenticated_users_can_create_projects()
+    public function guests_cannot_controle_projects()
     {
+        $project = factory('App\Project')->create();
+        
 
-        $attributes = factory('App\Project')->raw();
-
-        $this->post('/projects', $attributes)->assertRedirect('login');
+        $this->get('/projects')->assertRedirect('login');
+        $this->get('/projects/create')->assertRedirect('login');
+        $this->get($project->path())->assertRedirect('login');
+        $this->post('/projects', $project->toArray())->assertRedirect('login');
     }
+
 
     /** @test */
     public function a_user_can_create_a_project()
@@ -26,6 +30,8 @@ class ProjectsTest extends TestCase
         $this->withoutExceptionHandling();
 
         $this->actingAs(factory('App\User')->create()); //Ustvari userja, ki bo igral authenticaded userja
+
+        $this->get('/projects/create')->assertStatus(200);
 
         $attributes = [
             'title' => $this->faker->sentence,
@@ -40,15 +46,29 @@ class ProjectsTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_view_a_project()
+    public function a_user_can_view_their_project()
     {
+        $this->be(factory('App\User')->create()); //Acting user
+
         $this->withoutExceptionHandling();
 
-        $project = factory('App\Project')->create();
+        $project = factory('App\Project')->create(['owner_id' => auth()->id()]); //Specify acting user
 
         $this->get($project->path())
             ->assertSee($project->title)
             ->assertSee($project->description);
+    }
+
+    /** @test */
+    public function an_authenticated_user_cannot_view_the_projects_of_others()
+    {
+        $this->be(factory('App\User')->create()); //Acting user
+
+        // $this->withoutExceptionHandling();
+
+        $project = factory('App\Project')->create();
+        
+        $this->get($project->path())->assertStatus(403);
     }
 
     /** @test */
