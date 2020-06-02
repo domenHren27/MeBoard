@@ -1,17 +1,20 @@
 @extends('layouts.app')
 @section('content')
-    <div style="display: flex; align-items:center">
-        <h1 style="margin-right: auto;">MeBoard</h1>
+    <div class="flex items-center mb-3">
         <a href="/projects/create">New Project</a>
     </div>
-    
-    <ul>
+
+    <div class="flex">
         @forelse ($projects as $project)
-            <li>
-                <a href="{{$project->path()}}">{{$project->title}}</a>
-            </li>
-        @empty    
-            <li>No projects yet</li>
+            <div class="bg-white mr-4 rounded shadow">
+                <h3>{{ $project->title }}</h3>
+
+                <div> {{ $project->description }} </div>
+            </div>  
+        @empty
+            <div>No projects yet.</div>
         @endforelse
-    </ul> 
+        
+    </div>
+  
 @endsection
