@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/**
+/**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
  *
@@ -6182,6 +6182,11 @@ table {
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+
+.button-my {
+  background-color: #47cdff;
+  color: white;
+}
 
 @media (min-width: 576px) {
   .sm\:list-reset {
