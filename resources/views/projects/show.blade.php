@@ -22,13 +22,20 @@
     </header>
     <main>
         <div class="lg:flex -mx-3">
-            <div class="lg:w-3/4 px-3">
+            <div class="lg:w-3/4 px-3 mb-6">
                 <div class=mb-8>
                     <h2 class="text-grey-dark text-lg font-normal mb-3">Tasks</h2>
                     {{--Tasks --}}
                     @foreach ($project->tasks as $task)
                         <div class="bg-white mb-3 p-5 rounded-lg shadow shadow">{{ $task->body }}</div>
                     @endforeach
+                    <div class="bg-white mb-3 p-5 rounded-lg shadow shadow">
+                        <form action="{{ $project->path() . '/tasks'}}" method="POST">
+                            @csrf
+                            <input placeholder="Add a new task" class="w-full" name="body">
+                            {{-- pomembno je, da damo inputu name --}}
+                        </form>                            
+                    </div>
                 </div>
                 <div>
                     <h2 class="text-grey-dark text-lg font-normal mb-3">General Notes</h2>
