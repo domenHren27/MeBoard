@@ -26,11 +26,9 @@
                 <div class=mb-8>
                     <h2 class="text-grey-dark text-lg font-normal mb-3">Tasks</h2>
                     {{--Tasks --}}
-                    <div class="bg-white mb-3 p-5 rounded-lg shadow shadow">Lorem ipsum</div>
-                    <div class="bg-white mb-3 p-5 rounded-lg shadow shadow">Lorem ipsum</div>
-                    <div class="bg-white mb-3 p-5 rounded-lg shadow shadow">Lorem ipsum</div>
-                    <div class="bg-white mb-3 p-5 rounded-lg shadow shadow">Lorem ipsum</div>
-                    <div class="bg-white p-5 rounded-lg shadow shadow">Lorem ipsum</div>
+                    @foreach ($project->tasks as $task)
+                        <div class="bg-white mb-3 p-5 rounded-lg shadow shadow">{{ $task->body }}</div>
+                    @endforeach
                 </div>
                 <div>
                     <h2 class="text-grey-dark text-lg font-normal mb-3">General Notes</h2>

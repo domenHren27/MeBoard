@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Support\Str;
 
 class ManageProjectsTest extends TestCase
 {
@@ -48,21 +49,21 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_view_their_project()
     {
-        $this->be(factory('App\User')->create()); //Acting user
+        $this->signIn();
 
         $this->withoutExceptionHandling();
 
-        $project = factory('App\Project')->create(['owner_id' => auth()->id()]); //Specify acting user
+        $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
 
         $this->get($project->path())
             ->assertSee($project->title)
-            ->assertSee($project->description);
+            ->assertSee(Str::limit($project->description, 100));
     }
 
     /** @test */
     public function an_authenticated_user_cannot_view_the_projects_of_others()
     {
-        $this->be(factory('App\User')->create()); //Acting user
+        $this->signIn(); //Acting user
 
         // $this->withoutExceptionHandling();
 
@@ -74,7 +75,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_title()
     {
-        $this->actingAs(factory('App\User')->create()); //Ustvari userja, ki bo igral authenticaded userja
+        $this->signIn(); //Ustvari userja, ki bo igral authenticaded userja
 
         $attributes = factory('App\Project')->raw(['title' => '']);
 
@@ -84,7 +85,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_description()
     {
-        $this->actingAs(factory('App\User')->create()); //Ustvari userja, ki bo igral authenticaded userja
+        $this->signIn(); //Ustvari userja, ki bo igral authenticaded userja
 
         $attributes = factory('App\Project')->raw(['description' => '']);
 
