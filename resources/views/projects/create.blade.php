@@ -27,14 +27,14 @@
 
         <div>
             <div>
-                <a type="submit" class="py-2 px-5"
+                <button type="submit" class="py-2 px-5"
                 style=
                     "background-color: #47cdff; 
                     text-decoration: none;
                     box-shadow: 0 2px 7px 0 #b0eaff; 
                     border-radius: 5rem;
                     color: white;
-                    font-size: 0.8rem;">Create Project</a>
+                    font-size: 0.8rem;">Create Project</button>
                 <a href="/projects">Cancle</a>
             </div>
         </div>

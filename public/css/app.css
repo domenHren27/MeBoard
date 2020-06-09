@@ -6183,9 +6183,11 @@ table {
  * @import "utilities/skew-transforms";
  */
 
-.button-my {
-  background-color: #47cdff;
-  color: white;
+.card {
+  background-color: white;
+  padding: 5rem;
+  border-radius: .5rem;
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, .8);
 }
 
 @media (min-width: 576px) {
