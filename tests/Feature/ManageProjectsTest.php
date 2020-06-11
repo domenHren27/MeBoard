@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Str;
 use App\Project;
+use Facades\Tests\Setup\ProjectFactory;
 
 class ManageProjectsTest extends TestCase
 {
@@ -29,7 +30,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_create_a_project()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling(); Graceful exception handeling. Uporabljaš ko pišeše teste
 
         $this->actingAs(factory('App\User')->create()); //Ustvari userja, ki bo igral authenticaded userja
 
@@ -48,8 +49,6 @@ class ManageProjectsTest extends TestCase
 
         $resposns->assertRedirect($project->path());
 
-        $this->assertDatabaseHas('projects', $attributes);
-
         $this->get($project->path())
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description'])
@@ -59,29 +58,28 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_update_a_project()
     {
-        $this->signIn();
+        // $this->signIn();
 
-        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
 
-        $project = factory('App\Project')->create(['owner_id' => auth()->id()]); 
+        // $project = factory('App\Project')->create(['owner_id' => auth()->id()]); 
         
-        $this->patch($project->path(), [
+        $project = ProjectFactory::create();
+
+        $this->actingAs($project->owner)->patch($project->path(), $attributes = [
             'notes' => 'Changed'
         ])->assertRedirect($project->path());
 
-        $this->assertDatabaseHas('projects', ['notes' => 'Changed']);
+        $this->assertDatabaseHas('projects', $attributes);
     }
 
     /** @test */
     public function a_user_can_view_their_project()
-    {
-        $this->signIn();
+    {        
+        $project = ProjectFactory::create();
 
-        $this->withoutExceptionHandling();
-
-        $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
-
-        $this->get($project->path())
+        $this->actingAs($project->owner)
+            ->get($project->path())
             ->assertSee($project->title)
             ->assertSee(Str::limit($project->description, 100));
     }
