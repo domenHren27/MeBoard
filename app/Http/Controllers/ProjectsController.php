@@ -36,14 +36,16 @@ class ProjectsController extends Controller
     public function store()
     {        
         //auth//validate//presist
-        $project = auth()->user()->projects()->create(request()->validate([
-            'title' => 'required',
-            'description' =>  'required',
-            'notes' => 'min:3' //It is not required
-        ]));
+        $project = auth()->user()->projects()->create($this->validateRequest());
 
         //redirect
         return redirect($project->path());
+    }
+
+    public function edit(Project $project)
+    {
+        $this->authorize('update', $project); // Mora imeti, da ne vidi informacij
+        return view('projects.edit', compact('project'));   
     }
 
     public function update(Project $project)
@@ -59,10 +61,20 @@ class ProjectsController extends Controller
         //     'notes' => request('notes')
         // ]); Enaki način kot spodaj le da je daljši
 
-        $project->update(request(['notes']));
+        $attribustes = $this->validateRequest();
+
+        $project->update($attribustes);
 
         return redirect($project->path());
     }
 
+    protected function validateRequest()
+    {
+        return request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'notes' => 'min:3'
+        ]);
+    }
     
 }
