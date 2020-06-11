@@ -72,7 +72,14 @@
                         border-radius: 5rem;
                         color: white;
                         font-size: 0.8rem;">Save</button>
-                    </form>                    
+                    </form>
+                    @if ($errors->any())
+                        <div class="field mt-6">
+                        @foreach ($errors->all() as $error)
+                            <li class="text-sm text-red">{{ $error }}</li>
+                        @endforeach
+                        </div>  {{--  Show errors, pomembno, da dodamo ob vsakemu formu --}}
+                    @endif                   
                 </div>                                 
                 
             </div>

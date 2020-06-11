@@ -71,9 +71,9 @@ class ProjectsController extends Controller
     protected function validateRequest()
     {
         return request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'notes' => 'min:3'
+            'title' => 'sometimes|required', //Ne vedno, samo ko imamo vključena oba
+            'description' => 'sometimes|required', //Ne vedno, samo ko imamo vključena oba
+            'notes' => 'nullable' //Lahko jih sploh ni
         ]);
     }
     
