@@ -68,6 +68,15 @@ class ProjectsController extends Controller
         return redirect($project->path());
     }
 
+    protected function validateRequest()
+    {
+        return request()->validate([
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'notes' => 'min:3'
+        ]);
+    }
+
     
     
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Auth\Access\Gate;
-
+// use Illuminate\Auth\Access\Gate;
+use Illuminate\Support\Facades\Gate; //Pomembno je da uporabljamo facade, če hočemo static method
 class UpdateProjectRequest extends FormRequest
 {
     /**
