@@ -62,8 +62,8 @@ class ProjectsController extends Controller
         //     'notes' => request('notes')
         // ]); Enaki način kot spodaj le da je daljši
 
-
-        $project->update($request->validated());
+        $request->presist();
+        // $project->update($request->validated());
 
         return redirect($project->path());
     }

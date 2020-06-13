@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 // use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Gate; //Pomembno je da uporabljamo facade, če hočemo static method
+use App\Project;
 class UpdateProjectRequest extends FormRequest
 {
     /**
@@ -14,7 +15,7 @@ class UpdateProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return Gate::allows('update', $this->route('project'));
+        return Gate::allows('update', $this->project());
     }
 
     /**
@@ -29,5 +30,15 @@ class UpdateProjectRequest extends FormRequest
             'description' => 'sometimes|required', //Ne vedno, samo ko imamo vključena oba
             'notes' => 'nullable' //Lahko jih sploh ni
         ];
+    }
+
+    public function project()
+    {
+        return $this->route('project');        
+    }
+
+    public function presist()
+    {
+        $this->project()->update($this->validated()); // 'project' pomeni {project} v routes web-u.       
     }
 }
