@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Str;
-use App\Project;
 use Facades\Tests\Setup\ProjectFactory;
 
 class ManageProjectsTest extends TestCase
@@ -31,24 +31,21 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_create_a_project()
     {
-        //$this->withoutExceptionHandling(); Graceful exception handeling. Uporabljaš ko pišeše teste
-
-        $this->actingAs(factory('App\User')->create()); //Ustvari userja, ki bo igral authenticaded userja
+        $this->signIn();
 
         $this->get('/projects/create')->assertStatus(200);
 
         $attributes = [
             'title' => $this->faker->sentence,
             'description' => $this->faker->sentence,
-            'notes' => 'General notes here'
+            'notes' => 'General notes here.'
         ];
 
-        $resposns = $this->post('/projects', $attributes);
-        
+        $response = $this->post('/projects', $attributes);
+
         $project = Project::where($attributes)->first();
 
-
-        $resposns->assertRedirect($project->path());
+        $response->assertRedirect($project->path());
 
         $this->get($project->path())
             ->assertSee($attributes['title'])

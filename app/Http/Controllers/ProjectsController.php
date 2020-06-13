@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProjectRequest;
 use App\Project; //Paziti moramo na "namespace"
 use Illuminate\Http\Request;
 
@@ -48,10 +49,10 @@ class ProjectsController extends Controller
         return view('projects.edit', compact('project'));   
     }
 
-    public function update(Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
 
-        $this->authorize('update', $project); //To je za policy
+         //To je za policy
 
         // if (auth()->user()->isNot($project->owner)) {
         //     abort(403);
@@ -61,20 +62,12 @@ class ProjectsController extends Controller
         //     'notes' => request('notes')
         // ]); Enaki način kot spodaj le da je daljši
 
-        $attribustes = $this->validateRequest();
 
-        $project->update($attribustes);
+        $project->update($request->validated());
 
         return redirect($project->path());
     }
 
-    protected function validateRequest()
-    {
-        return request()->validate([
-            'title' => 'sometimes|required', //Ne vedno, samo ko imamo vključena oba
-            'description' => 'sometimes|required', //Ne vedno, samo ko imamo vključena oba
-            'notes' => 'nullable' //Lahko jih sploh ni
-        ]);
-    }
+    
     
 }
