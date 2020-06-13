@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// \App\Project::created(function ($project) { //Sproži event ko smo dali create na Project modelu !
+//     \App\Activity::create([
+//         'project_id' => $project->id,
+//         'description' => 'created'
+//     ]);
+// });
 
 Route::get('/', function () {
     return view('welcome');
