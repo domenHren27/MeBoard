@@ -9,7 +9,7 @@ use App\Task;
 
 class ProjectFactory
 {
-    protected $tasksCount;
+    protected $tasksCount = 0;
 
     protected $user;
 
