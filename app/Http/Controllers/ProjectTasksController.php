@@ -28,13 +28,20 @@ class ProjectTasksController extends Controller
         //     abort(403);
         // }
 
-        request()->validate(['body' => 'required']);
+        $attributes = request()->validate(['body' => 'required']);
 
-        $task->update(['body' => request('body')]);
+        $task->update($attributes);
 
-        if (request()->has('completed')) {
-            $task->complete();
-        }
+        $method = request('completed') ? 'complete' : 'incomplete';
+        
+        //To je nadomestek spodnje komentirane kode
+        $task->$method();
+
+        // if (request('completed')) {
+        //     $task->complete();
+        // } else {
+        //     $task->incomplete();
+        // }
 
         // $task->update([
         //     'body' => request('body'),
