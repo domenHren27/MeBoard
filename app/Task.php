@@ -14,30 +14,38 @@ class Task extends Model
     protected $casts = [
         'completed' => 'boolean'
     ];
-
+    //** POZOR SPODAJ JE NADOMESTEK OBSERVERJA !!!  */
     //To bi lahko dali v Observer, je le eden od možnih načinov
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::created(function ($task) {
-            $task->project->recordActivity('created_task');
-            // Activity::create([
-            //     'project_id' => $task->project->id,
-            //     'description' => 'created_task'
-            // ]);
-        });
+    //     static::created(function ($task) {
+    //         $task->project->recordActivity('created_task');
+    //         // Activity::create([
+    //         //     'project_id' => $task->project->id,
+    //         //     'description' => 'created_task'
+    //         // ]);
+    //     });
 
-        static::updated(function ($task) {
-            if (! $task->completed) return;
+    //     static::deleted(function ($task) {
+    //         $task->project->recordActivity('deleted_task');
+    //         // Activity::create([
+    //         //     'project_id' => $task->project->id,
+    //         //     'description' => 'created_task'
+    //         // ]);
+    //     });
+
+    //     static::updated(function ($task) {
+    //         if (! $task->completed) return;
            
-            $task->project->recordActivity('completed_task');
-            // Activity::create([
-            //     'project_id' => $task->project->id,
-            //     'description' => 'completed_task'
-            // ]);
-        });
-    }
+    //         $task->project->recordActivity('completed_task');
+    //         // Activity::create([
+    //         //     'project_id' => $task->project->id,
+    //         //     'description' => 'completed_task'
+    //         // ]);
+    //     });
+    // }
     
     public function complete()
     {
@@ -46,7 +54,9 @@ class Task extends Model
 
     public function incomplete()
     {
-        $this->update(['completed' => false]);            
+        $this->update(['completed' => false]);
+        
+        $this->project->recordActivity('incompleted_task');
     }
 
     public function project()

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class RecordActivityTest extends TestCase
+class TrigerActivityTest extends TestCase
 {
     use RefreshDatabase;
     
@@ -73,6 +73,26 @@ class RecordActivityTest extends TestCase
 
         $this->assertCount(3, $project->activity);
 
-        $this->assertEquals('completed_task', $project->activity->last()->description);
+        $this->patch($project->tasks[0]->path(), [
+            'body' => 'foobar',
+            'completed' => false
+        ]);
+
+        $project->refresh(); //refresh pomeni, da refreshamo objekt. Potegnemo ga iz baze
+
+        $this->assertCount(4, $project->activity); //fresh pomeni fresh copy iz baze podatkov
+
+        $this->assertEquals('incompleted_task', $project->activity->last()->description);
+    }
+
+    /** @test */
+    public function deleting_a_task()
+    {
+        $project = ProjectFactory::withTasks(1)->create();
+        
+        $project->tasks[0]->delete();
+
+        $this->assertCount(3, $project->activity);
+        
     }
 }

@@ -32,10 +32,7 @@ class ProjectTasksController extends Controller
 
         $task->update($attributes);
 
-        $method = request('completed') ? 'complete' : 'incomplete';
-        
-        //To je nadomestek spodnje komentirane kode
-        $task->$method();
+        request('completed') ? $task->complete() : $task->incomplete();
 
         // if (request('completed')) {
         //     $task->complete();
