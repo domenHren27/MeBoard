@@ -14,7 +14,7 @@ class TaskObserver
      */
     public function created(Task $task)
     {
-        $task->project->recordActivity('created_task');
+        $task->recordActivity('created_task');
     }
 
     /**
@@ -23,12 +23,12 @@ class TaskObserver
      * @param  \App\Task  $task
      * @return void
      */
-    public function updated(Task $task)
-    {
-        if (! $task->completed) return;
+    // public function updated(Task $task)
+    // {
+    //     if (! $task->completed) return;
            
-        $task->project->recordActivity('completed_task');
-    }
+    //     $task->complete();
+    // }
 
     /**
      * Handle the task "deleted" event.

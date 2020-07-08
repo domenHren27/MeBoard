@@ -44,6 +44,7 @@ class TrigerActivityTest extends TestCase
         tap($project->activity->last(), function ($activity){
             $this->assertEquals('created_task', $activity->description);
             $this->assertInstanceOf(Task::class, $activity->subject);
+            $this->assertEquals('Some task', $activity->subject->body);
         });
         
     }
@@ -61,8 +62,13 @@ class TrigerActivityTest extends TestCase
 
 
         $this->assertCount(3, $project->activity);
+        
+        tap($project->activity->last(), function ($activity){
+            $this->assertEquals('completed_task', $activity->description);
+            $this->assertInstanceOf(Task::class, $activity->subject);
+        });
 
-        $this->assertEquals('completed_task', $project->activity->last()->description);
+        
     }
 
     /** @test */

@@ -16,6 +16,10 @@ class CreateActivitiesTable extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id');
+            $table->nullableMorphs('subject');
+            //Spodnji idenetičen zgornjemu, le da ni nullable.
+            // $table->unsignedInteger('subject_id');
+            // $table->string('subject_type');
             $table->string('description');
             $table->timestamps();
 

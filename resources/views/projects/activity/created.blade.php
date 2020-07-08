@@ -1,1 +1,1 @@
-You created the project
+You created a project
