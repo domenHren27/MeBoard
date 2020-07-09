@@ -61,7 +61,7 @@ class ManageProjectsTest extends TestCase
     {
         // $this->signIn();
 
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         // $project = factory('App\Project')->create(['owner_id' => auth()->id()]); 
         

@@ -20,6 +20,7 @@ class CreateActivitiesTable extends Migration
             //Spodnji idenetičen zgornjemu, le da ni nullable.
             // $table->unsignedInteger('subject_id');
             // $table->string('subject_type');
+            $table->text('changes')->nullable();
             $table->string('description');
             $table->timestamps();
 
