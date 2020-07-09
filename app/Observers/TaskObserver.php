@@ -23,6 +23,17 @@ class TaskObserver
      * @param  \App\Task  $task
      * @return void
      */
+    public function updating(Task $task)
+    {
+        $task->old = $task->getOriginal();
+    }
+
+    /**
+     * Handle the task "updated" event.
+     *
+     * @param  \App\Task  $task
+     * @return void
+     */
     // public function updated(Task $task)
     // {
     //     if (! $task->completed) return;

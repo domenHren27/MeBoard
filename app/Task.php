@@ -2,12 +2,16 @@
 
 namespace App;
 
+
 use Illuminate\Database\Eloquent\Model;
 use App\Activity;
 
 class Task extends Model
 {
+    use RecordsActivity;
     protected $guarded = [];
+
+    
 
     protected $touches = ['project']; //Če spremenimo task se dotaknemo project. To se vidi pri updated at.
 
@@ -70,18 +74,6 @@ class Task extends Model
     public function path()
     {
         return "/projects/{$this->project->id}/tasks/{$this->id}";
-    }
-
-    public function recordActivity($description)
-    {
-        $this->activity()->create([
-            'project_id' => $this->project_id,
-            'description' => $description
-        ]);
-        // Activity::create([
-        //     'project_id' => $this->id,
-        //     'description' => $type
-        // ]);
     }
 
     public function activity()

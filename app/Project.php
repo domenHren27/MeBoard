@@ -1,16 +1,14 @@
 <?php
 
 namespace App;
-
-use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
 
 class Project extends Model
 {
-    protected $guarded = [];
+    use RecordsActivity; //Trait 
 
-    public $old = [];
+    protected $guarded = [];
 
     //Data serialization episoda 26 čas 7:16 za več inforamcij. Če tega nebi spremenili test ne deluje
     protected function serializeDate(DateTimeInterface $date)
@@ -42,18 +40,9 @@ class Project extends Model
     {
         $this->activity()->create([
             'description' => $description,
-            'changes' => $this->activityChanges($description) 
+            'changes' => $this->activityChanges(),
+            'project_id' => class_basename($this) === 'Project' ? $this->id : $this->project_id
         ]);
-    }
-
-    public function activityChanges($description)
-    {
-        if ($description == 'updated') {
-            return [
-                'before' => Arr::except(array_diff($this->old, $this->getAttributes()), 'updated_at'),
-                'after' => Arr::except($this->getChanges(), 'updated_at') //getChanges deluje samo, če ga presistamo v bazo podatkov
-            ];
-        }        
     }
 
     public function activity()
