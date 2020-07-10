@@ -36,14 +36,15 @@ class Project extends Model
         return $this->tasks()->create(compact('body'));
     }
 
-    public function recordActivity($description)
-    {
-        $this->activity()->create([
-            'description' => $description,
-            'changes' => $this->activityChanges(),
-            'project_id' => class_basename($this) === 'Project' ? $this->id : $this->project_id
-        ]);
-    }
+    // public function recordActivity($description)
+    // {
+    //     $this->activity()->create([
+    //         'user_id' => $this->owner_id,
+    //         'description' => $description,
+    //         'changes' => $this->activityChanges(),
+    //         'project_id' => class_basename($this) === 'Project' ? $this->id : $this->project_id
+    //     ]);
+    // }
 
     public function activity()
     {

@@ -15,6 +15,7 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->foreignId('project_id');
             $table->nullableMorphs('subject');
             //Spodnji idenetičen zgornjemu, le da ni nullable.
@@ -24,6 +25,7 @@ class CreateActivitiesTable extends Migration
             $table->string('description');
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
