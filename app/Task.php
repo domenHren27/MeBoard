@@ -19,6 +19,8 @@ class Task extends Model
     protected $casts = [
         'completed' => 'boolean'
     ];
+
+    protected static $recordableEvents = ['created', 'deleted'];
     //** POZOR SPODAJ JE NADOMESTEK OBSERVERJA !!!  */
     //To bi lahko dali v Observer, je le eden od možnih načinov
     // protected static function boot()
@@ -76,9 +78,6 @@ class Task extends Model
         return "/projects/{$this->project->id}/tasks/{$this->id}";
     }
 
-    public function activity()
-    {
-        return $this->morphMany(Activity::class, 'subject')->latest();
-    }    
+   
 
 }
