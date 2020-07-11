@@ -36,6 +36,16 @@ class Project extends Model
         return $this->tasks()->create(compact('body'));
     }
 
+    public function invite(User $user)
+    {
+        return $this->members()->attach($user);
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_members'); //Zadnji argument je coustem ime za pivot table. V kolikor imena ne podamo izbere project_user
+    }
+
     // public function recordActivity($description)
     // {
     //     $this->activity()->create([
