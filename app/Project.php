@@ -43,7 +43,7 @@ class Project extends Model
 
     public function members()
     {
-        return $this->belongsToMany(User::class, 'project_members'); //Zadnji argument je coustem ime za pivot table. V kolikor imena ne podamo izbere project_user
+        return $this->belongsToMany(User::class, 'project_members')->withTimestamps(); //Zadnji argument je coustem ime za pivot table. V kolikor imena ne podamo izbere project_user
     }
 
     // public function recordActivity($description)

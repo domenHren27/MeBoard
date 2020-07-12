@@ -9,7 +9,7 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = auth()->user()->projects; //()->orderBy('updated_at', 'desc')->get(); //Uredimo jih glede na time stamp
+        $projects = auth()->user()->allProjects(); //()->orderBy('updated_at', 'desc')->get(); //Uredimo jih glede na time stamp
 
     
 

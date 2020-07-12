@@ -57,6 +57,18 @@ class ManageProjectsTest extends TestCase
     }
 
     /** @test */
+    public function a_user_can_see_all_projects_they_have_been_invited_to_on_their_dashboard()
+    {
+        //user, ki je bil povabljen mora vidit projekt, ki ga je naredil drugi user.
+        $user = $this->signIn(); //To bi lahko inlinal spodaj
+
+        $project = tap(ProjectFactory::create())->invite($user); //Tap deluje tako, da nam vrne argument neglede nato kaj potem storimo v njemu glej Tap metodo
+
+
+        $this->get('/projects')->assertSee($project->title);
+    }
+
+    /** @test */
     public function unauthorized_users_cannot_delete_projects()
     {
         $project = ProjectFactory::create();
