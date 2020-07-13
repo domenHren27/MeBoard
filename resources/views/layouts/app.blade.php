@@ -21,20 +21,19 @@
 </head>
 <body class="bg-grey-lighter">
     <div id="app">
-        <nav class="bg-white">
+        <nav class="bg-white section">
             <div class="container mx-auto">
-                <div class="flex justify-between items-center py-2">
+                <div class="flex justify-between items-center py-1">
                     <h1>
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            <img src="/images/logo.png" alt="MeBoard" height="50" width="50">
+                        <a class="navbar-brand" href="{{ url('/projects') }}">
+                            <img src="/images/logo.png" alt="Meboard" 
+                            width="50px" height="50px" class="relative" style="top: 2px">
                         </a>
                     </h1>
-                    
 
                     <div>
-
                         <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ml-auto list-reset">
                             <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
@@ -47,14 +46,25 @@
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    <a
+                                        id="navbarDropdown"
+                                        class="nav-link dropdown-toggle"
+                                        href="#" role="button"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                        v-pre
+                                    >
+                                        <img width="50"
+                                             class="rounded-full"
+                                             src="https://www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=200">
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                        <a class="dropdown-item"
+                                           href="{{ route('logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                        >
                                             {{ __('Logout') }}
                                         </a>
 
@@ -70,9 +80,11 @@
             </div>
         </nav>
 
-        <main class="py-4 mx-auto container">
-            @yield('content')
-        </main>
+        <div class="section">
+            <main class="container mx-auto py-6">
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 </html>
