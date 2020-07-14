@@ -17,11 +17,20 @@ class InvitationsTest extends TestCase
     public function non_owners_may_not_invite_users()
     {
         $project = ProjectFactory::create();
+        
         $user = factory(User::class)->create();
 
-        $this->actingAs($user)
+        $assertInvitationForbidden = function () use ($user, $project) {
+            $this->actingAs($user)
             ->post($project->path() . '/invitations')
             ->assertStatus(403);
+        };
+        
+        $assertInvitationForbidden();
+
+        $project->invite($user);
+
+        $assertInvitationForbidden();
     }
     /** @test */
     public function a_project_can_invite_a_user()
@@ -50,7 +59,7 @@ class InvitationsTest extends TestCase
         ])
         ->assertSessionHasErrors([
             'email' => 'The user you are inviting must have a Birdboard account.'
-        ]); // Assrtamo, da imamo napake pri validaciji. Ter preverjamo korektnost sporočila napake
+        ], null, 'invitations'); // Assrtamo, da imamo napake pri validaciji. Ter preverjamo korektnost sporočila napake. NUJNO moramo navesti v katerem BAGU so napake
     }
     
     /** @test */
