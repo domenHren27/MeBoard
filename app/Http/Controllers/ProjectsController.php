@@ -38,6 +38,14 @@ class ProjectsController extends Controller
         //auth//validate//presist
         $project = auth()->user()->projects()->create($this->validateRequest());
 
+        if ($tasks = request('tasks')) {
+            $project->addTasks(request('tasks'));            
+         }
+
+        if(request()->wantsJson()) {
+            return ['message' => $project->path()]; // VUE respons 
+        }
+
         //redirect
         return redirect($project->path());
     }

@@ -11,7 +11,8 @@
                 box-shadow: 0 2px 7px 0 #b0eaff; 
                 border-radius: 5rem;
                 color: white;
-                font-size: 0.8rem;">
+                font-size: 0.8rem;"
+                @click.prevent="$modal.show('new-project')">
                 New Project
             </a>
         </div>
@@ -28,5 +29,7 @@
         @endforelse
         
     </main>
-  
+    
+    <new-project-modal></new-project-modal>
+    
 @endsection

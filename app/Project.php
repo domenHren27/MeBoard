@@ -3,6 +3,7 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DateTimeInterface;
+use Illuminate\Support\Arr;
 
 class Project extends Model
 {
@@ -29,6 +30,15 @@ class Project extends Model
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function addTasks(array $tasks)
+    {
+        $tasks = Arr::where($tasks, function ($value, $key) {
+            return $value['body'] != null;
+        });
+
+        return $this->tasks()->createMany($tasks);
     }
 
     public function addTask($body)
