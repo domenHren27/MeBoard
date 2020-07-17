@@ -65,17 +65,18 @@
 </template>
 
 <script>
+    import MeboardForm from '/MeboardForm';
     export default {
 
         data() {
             return {
-                form: {
+                form: new MeboardForm({
                     title: '',
                     description: '',
                     tasks: [
                     { body: ''},
                     ]
-                },
+                }),
 
                 errors: {
 
@@ -88,17 +89,20 @@
                 this.form.tasks.push({ body:''})
             },
             async submit() {
-                try {
-                    let response = await axios.post('/projects', this.form);
-
-                    console.log(response.data.message)
-
-                    location = response.data.message;
-                }
-                catch (error) {
-                    this.errors=(error.response.data.errors);
-                }
+                this.form.submit('/projects');
             }
+            // async submit() {
+            //     try {
+            //         let response = await axios.post('/projects', this.form);
+
+            //         console.log(response.data.message)
+
+            //         location = response.data.message;
+            //     }
+            //     catch (error) {
+            //         this.errors=(error.response.data.errors);
+            //     }
+            // }
         }
     }
 </script>

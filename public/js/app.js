@@ -1955,6 +1955,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module '/MeboardForm'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2027,16 +2028,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      form: {
+      form: new !(function webpackMissingModule() { var e = new Error("Cannot find module '/MeboardForm'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())({
         title: '',
         description: '',
         tasks: [{
           body: ''
         }]
-      },
+      }),
       errors: {}
     };
   },
@@ -2050,35 +2052,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return axios.post('/projects', _this.form);
+                _this.form.submit('/projects');
 
-              case 3:
-                response = _context.sent;
-                console.log(response.data.message);
-                location = response.data.message;
-                _context.next = 11;
-                break;
-
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
-                _this.errors = _context.t0.response.data.errors;
-
-              case 11:
+              case 1:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee);
       }))();
-    }
+    } // async submit() {
+    //     try {
+    //         let response = await axios.post('/projects', this.form);
+    //         console.log(response.data.message)
+    //         location = response.data.message;
+    //     }
+    //     catch (error) {
+    //         this.errors=(error.response.data.errors);
+    //     }
+    // }
+
   }
 });
 
