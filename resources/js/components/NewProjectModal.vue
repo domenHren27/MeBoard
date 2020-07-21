@@ -78,7 +78,9 @@
 </template>
 
 <script>
+
     import MeboardForm from './MeboardForm';
+
     export default {
         data() {
             return {
@@ -88,7 +90,9 @@
                     tasks: [
                         { body: ''},
                     ]
+
                 })
+
             };
         },
         methods: {
@@ -96,12 +100,15 @@
                 this.form.tasks.push({ body: '' });
             },
             async submit() {
+
                 if (! this.form.tasks[0].body) {
                     delete this.form.originalData.tasks;
                 }
                 this.form.submit('/projects')
                     .then(response => location = response.data.message);
             }
+
+
         }
     }
 </script>

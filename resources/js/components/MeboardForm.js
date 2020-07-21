@@ -50,6 +50,7 @@ class MeboardForm {
 
     reset() {
         Object.assign(this, this.originalData);
+
     }
 }
 
