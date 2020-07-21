@@ -1955,6 +1955,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _MeboardForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MeboardForm */ "./resources/js/components/MeboardForm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2027,17 +2028,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      form: {
+      form: new _MeboardForm__WEBPACK_IMPORTED_MODULE_1__["default"]({
         title: '',
         description: '',
         tasks: [{
           body: ''
         }]
-      },
-      errors: {}
+      })
     };
   },
   methods: {
@@ -2050,33 +2064,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return axios.post('/projects', _this.form);
+                if (!_this.form.tasks[0].body) {
+                  delete _this.form.originalData.tasks;
+                }
 
-              case 3:
-                response = _context.sent;
-                console.log(response.data.message);
-                location = response.data.message;
-                _context.next = 11;
-                break;
+                _this.form.submit('/projects').then(function (response) {
+                  return location = response.data.message;
+                });
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
-                _this.errors = _context.t0.response.data.errors;
-
-              case 11:
+              case 2:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee);
       }))();
     }
   }
@@ -38431,13 +38436,13 @@ var render = function() {
     {
       attrs: {
         name: "new-project",
-        classes: "p-4 bg-blue rounded-lg p-10",
+        classes: "p-10 bg-card rounded-lg",
         height: "auto"
       }
     },
     [
       _c("h1", { staticClass: "font-normal mb-16 text-center text-2xl" }, [
-        _vm._v("Let's start something new")
+        _vm._v("Let’s Start Something New")
       ]),
       _vm._v(" "),
       _c(
@@ -38453,7 +38458,7 @@ var render = function() {
         [
           _c("div", { staticClass: "flex" }, [
             _c("div", { staticClass: "flex-1 mr-4" }, [
-              _c("div", { staticClass: " mb-4" }, [
+              _c("div", { staticClass: "mb-4" }, [
                 _c(
                   "label",
                   {
@@ -38472,9 +38477,10 @@ var render = function() {
                       expression: "form.title"
                     }
                   ],
-                  staticClass:
-                    "border border-muted-light p-2 text-xs block w-full rounded",
-                  class: _vm.errors.title ? "border-red" : "border-muted-light",
+                  staticClass: "border p-2 text-xs block w-full rounded",
+                  class: _vm.form.errors.title
+                    ? "border-red"
+                    : "border-muted-light",
                   attrs: { type: "text", id: "title" },
                   domProps: { value: _vm.form.title },
                   on: {
@@ -38487,15 +38493,17 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _vm.errors.title
+                _vm.form.errors.title
                   ? _c("span", {
-                      staticClass: "text-xs text-italic text-red",
-                      domProps: { textContent: _vm._s(_vm.errors.title[0]) }
+                      staticClass: "text-xs italic text-red",
+                      domProps: {
+                        textContent: _vm._s(_vm.form.errors.title[0])
+                      }
                     })
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: " mb-4" }, [
+              _c("div", { staticClass: "mb-4" }, [
                 _c(
                   "label",
                   {
@@ -38516,6 +38524,9 @@ var render = function() {
                   ],
                   staticClass:
                     "border border-muted-light p-2 text-xs block w-full rounded",
+                  class: _vm.form.errors.description
+                    ? "border-red"
+                    : "border-muted-light",
                   attrs: { id: "description", rows: "7" },
                   domProps: { value: _vm.form.description },
                   on: {
@@ -38528,11 +38539,11 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _vm.errors.description
+                _vm.form.errors.description
                   ? _c("span", {
-                      staticClass: "text-xs text-italic text-red",
+                      staticClass: "text-xs italic text-red",
                       domProps: {
-                        textContent: _vm._s(_vm.errors.description[0])
+                        textContent: _vm._s(_vm.form.errors.description[0])
                       }
                     })
                   : _vm._e()
@@ -38542,7 +38553,7 @@ var render = function() {
             _c("div", { staticClass: "flex-1 ml-4" }, [
               _c(
                 "div",
-                { staticClass: " mb-4" },
+                { staticClass: "mb-4" },
                 [
                   _c("label", { staticClass: "text-sm block mb-2" }, [
                     _vm._v("Need Some Tasks?")
@@ -38559,8 +38570,8 @@ var render = function() {
                         }
                       ],
                       staticClass:
-                        "border border-muted-light p-2 text-xs block w-full rounded mb-2",
-                      attrs: { type: "text", placeholder: "Task-1" },
+                        "border border-muted-light mb-2 p-2 text-xs block w-full rounded",
+                      attrs: { type: "text", placeholder: "Task 1" },
                       domProps: { value: task.body },
                       on: {
                         input: function($event) {
@@ -38579,14 +38590,55 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "border p-2 rounded-full bg-blue-light shadow",
+                  staticClass: "inline-flex items-center text-xs",
                   attrs: { type: "button" },
                   on: { click: _vm.addTask }
                 },
                 [
-                  _c("span", { staticClass: "text-sm text-grey-light" }, [
-                    _vm._v("Add New Tsk Fieald")
-                  ])
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "mr-2",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "18",
+                        height: "18",
+                        viewBox: "0 0 18 18"
+                      }
+                    },
+                    [
+                      _c(
+                        "g",
+                        {
+                          attrs: {
+                            fill: "none",
+                            "fill-rule": "evenodd",
+                            opacity: ".307"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              stroke: "#000",
+                              "stroke-opacity": ".012",
+                              "stroke-width": "0",
+                              d: "M-3-3h24v24H-3z"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("path", {
+                            attrs: {
+                              fill: "#000",
+                              d:
+                                "M9 0a9 9 0 0 0-9 9c0 4.97 4.02 9 9 9A9 9 0 0 0 9 0zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm1-11H8v3H5v2h3v3h2v-3h3V8h-3V5z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Add New Task Field")])
                 ]
               )
             ])
@@ -38596,11 +38648,11 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "py-2 px-5 mr-2",
+                staticClass: "px-5 py-2 button is-outlined mr-4",
                 staticStyle: {
-                  "background-color": "#47cdff",
+                  "background-color": "rgb(71, 205, 255)",
                   "text-decoration": "none",
-                  "box-shadow": "0 2px 7px 0 #b0eaff",
+                  "box-shadow": "rgb(176, 234, 255) 0px 2px 7px 0px",
                   "border-radius": "5rem",
                   color: "white",
                   "font-size": "0.8rem"
@@ -38618,18 +38670,17 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "py-2 px-5",
+                staticClass: "button px-5 py-2",
                 staticStyle: {
-                  "background-color": "#47cdff",
+                  "background-color": "rgb(71, 205, 255)",
                   "text-decoration": "none",
-                  "box-shadow": "0 2px 7px 0 #b0eaff",
+                  "box-shadow": "rgb(176, 234, 255) 0px 2px 7px 0px",
                   "border-radius": "5rem",
                   color: "white",
                   "font-size": "0.8rem"
-                },
-                attrs: { type: "submit" }
+                }
               },
-              [_vm._v("Create Project")]
+              [_vm._v("\n            Create Project")]
             )
           ])
         ]
@@ -50962,6 +51013,90 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/MeboardForm.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/MeboardForm.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var MeboardForm = /*#__PURE__*/function () {
+  function MeboardForm(data) {
+    _classCallCheck(this, MeboardForm);
+
+    this.originalData = JSON.parse(JSON.stringify(data));
+    Object.assign(this, data);
+    this.errors = {};
+    this.submitted = false;
+  }
+
+  _createClass(MeboardForm, [{
+    key: "data",
+    value: function data() {
+      var _this = this;
+
+      return Object.keys(this.originalData).reduce(function (data, attribute) {
+        data[attribute] = _this[attribute];
+        return data;
+      }, {});
+    }
+  }, {
+    key: "post",
+    value: function post(endpoint) {
+      return this.submit(endpoint);
+    }
+  }, {
+    key: "patch",
+    value: function patch(endpoint) {
+      return this.submit(endpoint, 'patch');
+    }
+  }, {
+    key: "delete",
+    value: function _delete(endpoint) {
+      return this.submit(endpoint, 'delete');
+    }
+  }, {
+    key: "submit",
+    value: function submit(endpoint) {
+      var requestType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'post';
+      return axios[requestType](endpoint, this.data())["catch"](this.onFail.bind(this)).then(this.onSuccess.bind(this));
+    }
+  }, {
+    key: "onSuccess",
+    value: function onSuccess(response) {
+      this.submitted = true;
+      this.errors = {};
+      return response;
+    }
+  }, {
+    key: "onFail",
+    value: function onFail(error) {
+      this.errors = error.response.data.errors;
+      this.submitted = false;
+      throw error;
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      Object.assign(this, this.originalData);
+    }
+  }]);
+
+  return MeboardForm;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (MeboardForm);
 
 /***/ }),
 
