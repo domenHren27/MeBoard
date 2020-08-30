@@ -26,7 +26,7 @@
                 <div class="flex justify-between items-center py-1">
                     <h1>
                         <a class="navbar-brand" href="{{ url('/projects') }}">
-                            <img src="/images/logo.png" alt="Meboard" 
+                            <img src="/images/target.png" alt="Meboard" 
                             width="50px" height="50px" class="relative" style="top: 2px">
                         </a>
                     </h1>
@@ -37,11 +37,11 @@
                             <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Vpis') }}</a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Registracija') }}</a>
                                     </li>
                                 @endif
                             @else
@@ -57,15 +57,22 @@
                                     >
                                         <img width="50"
                                              class="rounded-full"
-                                             src="https://www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=200">
+                                             src="/images/avatar.png">
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item"
+                                        <a  class="py-1 px-2"
                                            href="{{ route('logout') }}"
                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                           style=
+                                           "background-color: #ed8780; 
+                                           text-decoration: none;
+                                           box-shadow: 0 2px 7px 0 #ed8500; 
+                                           border-radius: 1rem;
+                                           color: white;
+                                           font-size: 0.8rem;"
                                         >
-                                            {{ __('Logout') }}
+                                            {{ __('Izpis') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

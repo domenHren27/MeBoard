@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Predstavitveno okno</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,16 +14,16 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Vpisan si !
 
                     <a class="no-underline" href="{{ url('/projects')}}">
                         <button class="px-5 py-2 bg-blue block mt-2 ml-2" style=
-                        "background-color: #47cdff; 
+                        "background-color: #ed8780; 
                         text-decoration: none;
-                        box-shadow: 0 2px 7px 0 #b0eaff; 
+                        box-shadow: 0 2px 7px 0 #ed8500; 
                         border-radius: 5rem;
                         color: white;">
-                            Display Projects
+                            Predstavi Projekte
                         </button>
                     
                     </a>

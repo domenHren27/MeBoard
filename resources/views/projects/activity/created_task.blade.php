@@ -1,1 +1,1 @@
-{{$activity->user->name}} created a task "{{ $activity->subject->body}}"
+{{$activity->user->name}} ustvaril nalogo "{{ $activity->subject->body}}"

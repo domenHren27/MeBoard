@@ -68,23 +68,24 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Domov</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Vpis</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Registracija</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
+            <div class="content flex-center">
                 <div class="title m-b-md">
-                    MeBoadrd
+                    MojaTabla
                 </div>
 
-                
+                <img src="/images/target.png" alt="Meboard" 
+                            width="50px" height="50px" class="mr-5" style="top: 2px" style="display: inline-block;">
             </div>
         </div>
     </body>

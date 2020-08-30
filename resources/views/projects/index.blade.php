@@ -2,18 +2,18 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between items-end w-full">
-            <h2 class="text-grey-dark text-sm font-normal">My Projects</h2>
+            <h2 class="text-grey-dark text-sm font-normal">Moji Projekti</h2>
             <a href="/projects/create" 
             class="py-2 px-5"
             style=
-                "background-color: #47cdff; 
+                "background-color: #ed8780; 
                 text-decoration: none;
-                box-shadow: 0 2px 7px 0 #b0eaff; 
+                box-shadow: 0 2px 7px 0 #ed8500; 
                 border-radius: 5rem;
                 color: white;
                 font-size: 0.8rem;"
                 @click.prevent="$modal.show('new-project')">
-                New Project
+                Nov Projekt
             </a>
         </div>
         
@@ -25,7 +25,7 @@
                 @include('projects.card')
             </div>             
         @empty
-            <div>No projects yet.</div>
+            <div>Ni projektov</div>
         @endforelse
         
     </main>

@@ -3,32 +3,32 @@
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between items-end w-full">
             <p class="text-grey-dark text-sm font-normal">
-                <a href="/projects" class="text-grey-dark text-sm font-normal no-underline"> My Projects </a> / {{ $project->title}}
+                <a href="/projects" class="text-grey-dark text-sm font-normal no-underline"> Moji Projekti </a> / {{ $project->title}}
                 
             </p>
             <div class="flex items-center">
                 @foreach ($project->members as $member)
                     <img 
-                        src="{{ gravatar_url($member->email)}}" 
+                        src="/images/avatar.png" 
                         class="rounded-full w-8 mr-2" 
                         alt="{{ $member->name }}'s avatar">
                 @endforeach
 
                 <img 
-                    src="{{ gravatar_url($project->owner->email)}}" 
+                    src="/images/avatar.png"
                     class="rounded-full w-8 mr-2" 
                     alt="{{ $project->owner->name }}'s avatar">
 
                 <a href="{{ $project->path().'/edit' }}" 
                     class="py-2 px-5 ml-4"
                     style=
-                        "background-color: #47cdff; 
+                        "background-color: #ed8780; 
                         text-decoration: none;
-                        box-shadow: 0 2px 7px 0 #b0eaff; 
+                        box-shadow: 0 2px 7px 0 #ed8500; 
                         border-radius: 5rem;
                         color: white;
                         font-size: 0.8rem;">
-                        Edit Project
+                        Uredi Projekt
                     </a>
             </div>
             
@@ -39,7 +39,7 @@
         <div class="lg:flex -mx-3">
             <div class="lg:w-3/4 px-3 mb-6">
                 <div class=mb-8>
-                    <h2 class="text-grey-dark text-lg font-normal mb-3">Tasks</h2>
+                    <h2 class="text-grey-dark text-lg font-normal mb-3">Naloge</h2>
                     {{--Tasks --}}
                     @foreach ($project->tasks as $task)
                         <div class="bg-white mb-3 p-5 rounded-lg shadow">
@@ -62,13 +62,15 @@
                     <div class="bg-white mb-3 p-5 rounded-lg shadow shadow">
                         <form action="{{ $project->path() . '/tasks'}}" method="POST">
                             @csrf
-                            <input placeholder="Add a new task" class="w-full" name="body">
+                            <input placeholder="Dodaj novo nalogo" class="w-full" name="body">
                             {{-- pomembno je, da damo inputu name --}}
                         </form>                            
                     </div>
                 </div>
                 <div>
-                    <h2 class="text-grey-dark text-lg font-normal mb-3">General Notes</h2>
+                    <h2 class="text-grey-dark text-lg font-normal mb-3">Zapiski
+
+                    </h2>
                     {{-- General notes --}}
 
                     <form action="{{$project->path()}}" method="POST">
@@ -77,16 +79,16 @@
                         <textarea
                             name="notes" 
                             class="bg-white p-5 rounded-lg shadow shadow w-full mb-4" 
-                            style="min-height: 200px" placeholder="Anything special that you make note of...">{{$project->notes}}
+                            style="min-height: 200px" placeholder="Imaš kaj posebnega za dodati...">{{$project->notes}}
                         </textarea>
 
                         <button class="py-2 px-5" type="submit" style=
-                        "background-color: #47cdff; 
+                        "background-color: #ed8780; 
                         text-decoration: none;
-                        box-shadow: 0 2px 7px 0 #b0eaff; 
+                        box-shadow: 0 2px 7px 0 #ed8500; 
                         border-radius: 5rem;
                         color: white;
-                        font-size: 0.8rem;">Save</button>
+                        font-size: 0.8rem;">Shrani</button>
                     </form>
                     
                     @include('errors') 

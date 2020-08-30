@@ -1,42 +1,47 @@
 @csrf
 
 <div class="field mb-6">
-    <label class="label text-sm mb-2 block" for="title">Title</label>
+    <label class="label text-sm mb-2 block" for="title">Naslov</label>
 
     <div class="control">
         <input
                 type="text"
                 class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full"
                 name="title"
-                placeholder="My next awesome project"
+                placeholder="Moj novi projekt"
                 required
                 value="{{ $project->title }}">
     </div>
 </div>
 
 <div class="field mb-6">
-    <label class="label text-sm mb-2 block" for="description">Description</label>
+    <label class="label text-sm mb-2 block" for="description">Opis</label>
 
     <div class="control">
             <textarea
                 name="description"
                 rows="10"
                 class="textarea bg-transparent border border-grey-light rounded p-2 text-xs w-full"
-                placeholder="I should start learning piano."
+                placeholder="Začel se bom učiti programiranje."
                 required>{{ $project->description }}</textarea>
     </div>
 </div>
 
 <div class="field">
     <div class="control">
-        <button type="submit" class="is-link mr-2 py-2 px-5" style="background-color: #47cdff; 
+        <button type="submit" class="is-link mr-2 py-2 px-5" style="background-color: #ed8780; 
         text-decoration: none;
-        box-shadow: 0 2px 7px 0 #b0eaff; 
+        box-shadow: 0 2px 7px 0 #ed8500; 
         border-radius: 5rem;
         color: white;
-        font-size: 0.8rem;">{{ $buttonText }}</button>
+        font-size: 0.8rem;">{{ 'Uredi Projekt' }}</button>
 
-        <a href="{{ $project->path() }}">Cancel</a>
+        <a style="background-color: #ed8780; 
+        text-decoration: none;
+        box-shadow: 0 2px 7px 0 #ed8500; 
+        border-radius: 5rem;
+        color: white;
+        font-size: 0.8rem;" class="is-link mr-2 py-2 px-5" href="{{ $project->path() }}">Prekini</a>
     </div>
 </div>
 

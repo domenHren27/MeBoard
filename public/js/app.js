@@ -2068,11 +2068,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3447,7 +3442,7 @@ var render = function() {
     },
     [
       _c("h1", { staticClass: "font-normal mb-16 text-center text-2xl" }, [
-        _vm._v("Let’s Start Something New")
+        _vm._v("Začnimo nekaj novega")
       ]),
       _vm._v(" "),
       _c(
@@ -3470,7 +3465,7 @@ var render = function() {
                     staticClass: "text-sm block mb-2",
                     attrs: { for: "title" }
                   },
-                  [_vm._v("Title")]
+                  [_vm._v("Naslov")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -3515,7 +3510,7 @@ var render = function() {
                     staticClass: "text-sm block mb-2",
                     attrs: { for: "description" }
                   },
-                  [_vm._v("Description")]
+                  [_vm._v("Opis")]
                 ),
                 _vm._v(" "),
                 _c("textarea", {
@@ -3561,7 +3556,7 @@ var render = function() {
                 { staticClass: "mb-4" },
                 [
                   _c("label", { staticClass: "text-sm block mb-2" }, [
-                    _vm._v("Need Some Tasks?")
+                    _vm._v("Potrebuješ naloge ?")
                   ]),
                   _vm._v(" "),
                   _vm._l(_vm.form.tasks, function(task) {
@@ -3599,52 +3594,7 @@ var render = function() {
                   attrs: { type: "button" },
                   on: { click: _vm.addTask }
                 },
-                [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "mr-2",
-                      attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        width: "18",
-                        height: "18",
-                        viewBox: "0 0 18 18"
-                      }
-                    },
-                    [
-                      _c(
-                        "g",
-                        {
-                          attrs: {
-                            fill: "none",
-                            "fill-rule": "evenodd",
-                            opacity: ".307"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              stroke: "#000",
-                              "stroke-opacity": ".012",
-                              "stroke-width": "0",
-                              d: "M-3-3h24v24H-3z"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: {
-                              fill: "#000",
-                              d:
-                                "M9 0a9 9 0 0 0-9 9c0 4.97 4.02 9 9 9A9 9 0 0 0 9 0zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm1-11H8v3H5v2h3v3h2v-3h3V8h-3V5z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Add New Task Field")])
-                ]
+                [_c("span", [_vm._v("Dodaj novo polje naloge")])]
               )
             ])
           ]),
@@ -3655,7 +3605,7 @@ var render = function() {
               {
                 staticClass: "px-5 py-2 button is-outlined mr-4",
                 staticStyle: {
-                  "background-color": "rgb(71, 205, 255)",
+                  "background-color": "#ed8780",
                   "text-decoration": "none",
                   "box-shadow": "rgb(176, 234, 255) 0px 2px 7px 0px",
                   "border-radius": "5rem",
@@ -3669,7 +3619,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Cancel")]
+              [_vm._v("Prekini")]
             ),
             _vm._v(" "),
             _c(
@@ -3677,7 +3627,7 @@ var render = function() {
               {
                 staticClass: "button px-5 py-2",
                 staticStyle: {
-                  "background-color": "rgb(71, 205, 255)",
+                  "background-color": "#ed8780",
                   "text-decoration": "none",
                   "box-shadow": "rgb(176, 234, 255) 0px 2px 7px 0px",
                   "border-radius": "5rem",
@@ -3685,7 +3635,7 @@ var render = function() {
                   "font-size": "0.8rem"
                 }
               },
-              [_vm._v("\n            Create Project")]
+              [_vm._v("\n            Ustari projekt")]
             )
           ])
         ]
@@ -15909,15 +15859,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!**********************************************!*\
   !*** ./resources/js/components/Dropdown.vue ***!
   \**********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Dropdown_vue_vue_type_template_id_ef782e08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dropdown.vue?vue&type=template&id=ef782e08& */ "./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&");
 /* harmony import */ var _Dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dropdown.vue?vue&type=script&lang=js& */ "./resources/js/components/Dropdown.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -15947,7 +15896,7 @@ component.options.__file = "resources/js/components/Dropdown.vue"
 /*!***********************************************************************!*\
   !*** ./resources/js/components/Dropdown.vue?vue&type=script&lang=js& ***!
   \***********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
