@@ -24,12 +24,16 @@
         <nav class="bg-white section">
             <div class="container mx-auto">
                 <div class="flex justify-between items-center py-1">
-                    <h1>
+                    <div class="flex items-center">
+                        <h1>
                         <a class="navbar-brand" href="{{ url('/projects') }}">
                             <img src="/images/target.png" alt="Meboard" 
                             width="50px" height="50px" class="relative" style="top: 2px">
                         </a>
-                    </h1>
+                        </h1>
+                        <h1 class="mr-5 title" style="margin-right: 2rem">Moja tabla</h1>
+                    </div>
+                    
 
                     <div>
                         <!-- Right Side Of Navbar -->
